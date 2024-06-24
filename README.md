@@ -8,7 +8,7 @@ python -m venv env
 ```sh
 env/Scripts/Activate
 ```
-# THEN INSTALL DJANGO IN THE PROJ FOLDER USING
+# THEN INSTALL DJANGO IN THE Pharmassist FOLDER USING
 ```sh 
 pip install django 
 pip install djangorestframework 
@@ -22,8 +22,9 @@ npm run build
 npm start
 ```
 
-# GO BACK TO PROJ DIRECTORY THEN RUN THE SERVER
+# CREATE (SPLIT) TERMINAL AND GO TO PHARMASSIST FOLDER
 ```sh
+
 python manage.py runserver
 ```
 
