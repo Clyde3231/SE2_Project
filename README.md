@@ -8,7 +8,7 @@ python -m venv env
 ```sh
 env/Scripts/Activate
 ```
-# THEN INSTALL DJANGO IN THE Pharmassist FOLDER USING
+# THEN INSTALL DJANGO IN THE Book FOLDER USING
 ```sh 
 pip install django 
 pip install djangorestframework 
@@ -22,7 +22,7 @@ npm run build
 npm start
 ```
 
-# CREATE (SPLIT) TERMINAL AND GO TO PHARMASSIST FOLDER
+# CREATE (SPLIT) TERMINAL AND GO TO Book FOLDER
 ```sh
 
 python manage.py runserver
