@@ -1,0 +1,258 @@
+/* Aboutus.css */
+
+/* General styles */
+
+.about-container {
+  display: flex;
+  align-items: center;
+  height: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  justify-content: space-around;
+  margin: 0;
+}
+
+/* About image styles */
+.about-image{
+  flex: 1;
+  margin-right: 40px;
+  float: left;
+  height: auto;
+  
+}
+
+.about-image img {
+  max-width: 600px; 
+  height: auto; 
+  border-radius: 0%; 
+  margin-right: 0px;
+  margin-left: 75px;
+  border: 1px solid #46c001;
+  
+ 
+}
+
+/* About content styles */
+.about-content {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.about-content h2 {
+  font-size: 30px;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  color: #46c001;
+  text-decoration: underline;
+}
+
+.about-content p {
+  font-size: 16px;
+  font-weight: normal !important;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 20px;
+}
+.about-header h2 {
+  font-size: 40px;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  color: #568259;
+  text-decoration: none;
+}
+
+/* About team styles */
+.about-team {
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; /* Allow team members to wrap to the next line on smaller screens */
+  align-items: stretch; /* Ensure team containers don't shrink on smaller screens */
+  justify-content: space-around; /* Adjust spacing for better appearance on smaller screens */
+  padding-top: 20px;
+}
+
+/* About story styles */
+.about-story {
+  text-align: center;
+  height: auto;
+  background-color: #f4f4f4;
+  padding: 20px;
+  justify-content: space-around;
+}
+
+.about-story h2 {
+  font-size: 30px;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  color: #46c001;  
+  text-decoration: underline;
+  
+}
+
+.about-story p {
+  font-size: 16px;
+  text-align: left;
+  font-weight: normal !important;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 20px;
+  /* padding: 0 20px; */
+  padding-top: 0;
+  padding-right: 50px;
+  padding-bottom: 0;
+  padding-left: 50px;
+  text-align: justify;
+}
+
+/* About team head styles */
+.about-teamhead {
+  text-align: center;
+  align-items: center;
+  height: auto;
+  background-color: white;
+  padding: 20px;
+}
+
+.about-teamhead p {
+  font-size: 16px;
+  text-align: left;
+  font-weight: normal !important;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 20px;
+  /* padding: 0 20px; */
+  /* padding: 0 20px; */
+  padding-top: 20px;
+  padding-right: 33px;
+  padding-bottom: 0;
+  padding-left: 33px;
+  text-align: justify;
+}
+
+.about-teamhead h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+/* Team intro styles */
+.team-intro {
+  margin: 0 20px;
+  
+}
+
+.team-intro h2 {
+  margin: 0 20px;
+  color: #46c001;
+}
+
+
+
+
+/* Team container styles */
+.team-container {
+  box-shadow: 0 0 35px rgba(25, 0, 58, 0.15);
+  text-align: center;
+  overflow: hidden;
+  padding: 20px;
+  margin: 0 10px 20px; /* Adjusted margin for smaller screens */
+  width: calc(33.33% - 20px); /* Adjusted width for smaller screens */
+  max-width: 350px;
+  height: auto;
+  border-radius: 5%;
+}
+
+.team-container .team-pic {
+  display: inline-block;
+  width: 130px;
+  height: 130px;
+  margin-bottom: 0px;
+  z-index: 1;
+  position: relative;
+
+}
+
+.team-container .team-pic img {
+  width: 100%;
+  height: auto;
+  border-radius: 15%;
+  position: relative;
+}
+
+.team-container .team-info {
+  font-size: 18px;
+  letter-spacing: 1px;
+  /* margin-bottom: 5px; */
+  margin-top: 15px;
+}
+
+.team-info p {
+  font-weight: 300;
+  text-transform: uppercase;
+  /* margin: 8px 0 20px 0; */
+  letter-spacing: 2px;
+  font-style: italic;
+  color: #808080;
+  text-align: center;
+  /* margin-top: 0px; */
+  padding-top:15px;
+}
+
+/* Adjusted font size for small screens */
+@media only screen and (max-width: 768px) {
+  .about-content h2,
+  .about-story h2,
+  .about-teamhead h2 {
+    font-size: 25px;
+  }
+
+  .about-content p,
+  .about-story p,
+  .about-teamhead p,
+  .team-info p {
+    font-size: 14px;
+  }
+  .about-image img {
+  margin-left: 40px;
+  }
+  .team-container {
+    width: calc(50% - 20px); /* Adjusted width for smaller screens */
+  }
+  .about-container{
+    width: 100%;
+    flex-direction: column;
+    margin: 0;
+    padding: 0px 40px;
+  }
+  .about-content{
+    width: 100%;
+    margin: 35px 0px;
+  }
+  .about-content p{
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .about-story{
+    width: 100%;
+    flex-direction: column;
+    margin: 0;
+    padding: 0px 40px;
+  }
+  .about-story p{
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin: 20px 0 20px 0;
+    padding: 0;
+  }
+  .about-story h2{
+    margin: 20px 0 20px 0;
+    padding-top: 20px;
+  }
+}
