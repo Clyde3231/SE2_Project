@@ -27,41 +27,37 @@ function Navbar() {
       <nav className="navbar">
         <div className="navbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            St. John's PharmAssist
-            <i className="fab fa-react"></i>
+            <a>
+              <img src="/images/newLogo.png" alt="Logo" />
+            </a>
+            {/* <i className="fab fa-react"></i> */}
           </Link>
+          
           <div className="menu-icon" onClick={handleClick}>
             <i className={click? "fas fa-times" : "fas fa-bars"} />
           </div>
+
           <ul className={click? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/products" className="nav-links" onClick={closeMobileMenu}>
-                Products
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/aboutus" className="nav-links" onClick={closeMobileMenu}>
-                About Us
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/contactus" className="nav-links" onClick={closeMobileMenu}>
-                Contact Us
-              </Link>
-            </li>
             <li className="nav-item">
               {button? (
                 <Button to="/signin" buttonStyle="btn--outline">
                   Log In <i className="fas fa-arrow-right" />
                 </Button>
               ) : (
-                <Link to="/sign-up" className="nav-links-mobile" onClick={closeMobileMenu}>
-                  Sign up
+                <Link to="/signin" className="nav-links-mobile" onClick={closeMobileMenu}>
+                  Log In
+                </Link>
+              )}
+            </li>
+
+            <li className="nav-item">
+              {button? (
+                <Button to="/register" buttonStyle="btn--outline">
+                  Register <i className="fas fa-arrow-right" />
+                </Button>
+              ) : (
+                <Link to="/register" className="nav-links-mobile" onClick={closeMobileMenu}>
+                  Register
                 </Link>
               )}
             </li>
