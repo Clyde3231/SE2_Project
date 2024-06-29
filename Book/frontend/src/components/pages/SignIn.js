@@ -1,34 +1,51 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./SignIn.css";
 
-function SignUp() {
+function SignIn() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState({ login: "" });
 
-  const users = [
-    { username: "krisia", password: "admin123" },
-    // Add more users as needed
-  ];
+  // const users = [
+  //   { username: "krisia", password: "admin123" },
+  //   // Add more users as needed
+  // ];
 
-  const handleLogin = () => {
-    const { username, password } = formData;
-
-    // Check if the entered credentials match any user
-    const user = users.find(
-      (user) => user.username === username && user.password === password
-    );
-
-    if (user) {
-      // After successful login, navigate to the 'Admin' route
-      navigate("/HomeAdmin");
-      
-    } else {
-      // Handle incorrect login
-      setErrors({ login: "Incorrect username or password" });
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    // const captchaValue = recaptcha.current.getValue();
+    // if (!captchaValue) {
+    //   alert("Please verify the reCAPTCHA!");
+    //   return;
+    // }
+  
+    try {
+      const res = await axios.post("http://localhost:8082/signin", {
+        username: formData.username,
+        password: formData.password,
+        // captchaValue: captchaValue,
+      });
+  
+      if (res.status === 200 && res.data.message === "Login successful") {
+        // Redirect to admin page after successful login
+        navigate("/HomeAdmin");
+      } else if (res.status === 401) {
+        // Display error message to the user for invalid username or password
+        alert("Invalid username or password");
+        console.error("Invalid username or password");
+      } else {
+        // Handle other error cases
+        console.error("An error occurred:", res.data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      // Handle network or other errors here
+      alert("Invalid username or password");
     }
   };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -81,4 +98,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignIn;

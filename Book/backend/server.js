@@ -18,7 +18,7 @@ const db = mysql.createConnection({
     //default sql password
     password: "",
     //name of database
-    database: "pharm_login"
+    database: "book_acc"
 });
 
 app.post('/verify', async (request, response) => {
@@ -34,13 +34,14 @@ app.post('/verify', async (request, response) => {
 //page
 app.post('/signin', (req, res) => {
     const { username, password } = req.body;
-    const sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-    db.query(sql, [username, password], (err, result) => {
+    const sql = "SELECT * FROM login WHERE username = ? AND password = ?";
+
+    db.query(sql, [username,password], (err, data) => {
         if (err) {
             console.error(err);
             return res.status(500).json({ message: "Error logging in" });
         }
-        if (result.length > 0) {
+        if (data.length > 0) {
             return res.status(200).json({ message: "Login successful" });
         } else {
             return res.status(401).json({ message: "Invalid username or password" });
@@ -48,6 +49,27 @@ app.post('/signin', (req, res) => {
     });
 });
 
+app.post('/register', (req, res) => {
+    const { username, email, password } = req.body;
+    const sql = "INSERT INTO login (username, email, password) VALUES (?, ?, ?)";
+    const values = [username, email, password];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error("Error registering:", err);
+            return res.status(500).json({ message: "Error registering user" });
+        }
+
+        console.log("Registration result:", result);
+
+        if (result.affectedRows > 0) {
+            return res.status(200).json({ message: "Registration successful" });
+        } else {
+            return res.status(401).json({ message: "Registration failed" });
+        }
+    });
+});
+  
 app.listen(port, () => {
     console.log(`Server listening at ${port}`)
   })
