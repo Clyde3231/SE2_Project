@@ -1,4 +1,4 @@
-﻿# api
+# api
 # AFTER CLONING THIS REPO CREATE A VIRTUAL ENVIRONMENT
 ```sh
 python -m venv env
