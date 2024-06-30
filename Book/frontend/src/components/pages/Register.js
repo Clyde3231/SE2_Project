@@ -50,12 +50,20 @@ function SignUp() {
           alert("Status: " + res.status);
         }
       })
-      .catch(err => console.error("Error:", err));
+      .catch(err => {
+        if (err.response && err.response.status === 409) {
+          setErrors({ ...errors, login: err.response.data.message });
+        } else {
+          console.error("Error:", err);
+        }
+      });
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+
+    setErrors(prevErrors => ({ ...prevErrors, [name]: "" }));
   };
 
   return (

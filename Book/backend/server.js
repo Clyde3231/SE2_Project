@@ -51,24 +51,54 @@ app.post('/signin', (req, res) => {
 
 app.post('/register', (req, res) => {
     const { username, email, password } = req.body;
-    const sql = "INSERT INTO login (username, email, password) VALUES (?, ?, ?)";
-    const values = [username, email, password];
 
-    db.query(sql, values, (err, result) => {
+    // Check if the username already exists
+    const checkUsernameQuery = "SELECT * FROM login WHERE username = ?";
+    db.query(checkUsernameQuery, [username], (err, usernameResults) => {
         if (err) {
-            console.error("Error registering:", err);
+            console.error("Error checking username:", err);
             return res.status(500).json({ message: "Error registering user" });
         }
 
-        console.log("Registration result:", result);
+        // Check if the email already exists
+        const checkEmailQuery = "SELECT * FROM login WHERE email = ?";
+        db.query(checkEmailQuery, [email], (err, emailResults) => {
+            if (err) {
+                console.error("Error checking email:", err);
+                return res.status(500).json({ message: "Error registering user" });
+            }
 
-        if (result.affectedRows > 0) {
-            return res.status(200).json({ message: "Registration successful" });
-        } else {
-            return res.status(401).json({ message: "Registration failed" });
-        }
+            // Check for existing username or email
+            const usernameExists = usernameResults.length > 0;
+            const emailExists = emailResults.length > 0;
+
+            // Validation
+            if (usernameExists && emailExists) {
+                return res.status(409).json({ message: "Username and Email already taken" });
+            } else if (usernameExists) {
+                return res.status(409).json({ message: "Username already taken" });
+            } else if (emailExists) {
+                return res.status(409).json({ message: "Email already taken" });
+            }
+
+            // If good, proceed with the registration
+            const insertQuery = "INSERT INTO login (username, email, password) VALUES (?, ?, ?)";
+            db.query(insertQuery, [username, email, password], (err, result) => {
+                if (err) {
+                    console.error("Error registering:", err);
+                    return res.status(500).json({ message: "Error registering user" });
+                }
+
+                if (result.affectedRows > 0) {
+                    return res.status(200).json({ message: "Registration successful" });
+                } else {
+                    return res.status(500).json({ message: "Registration failed" });
+                }
+            });
+        });
     });
 });
+
   
 app.listen(port, () => {
     console.log(`Server listening at ${port}`)
