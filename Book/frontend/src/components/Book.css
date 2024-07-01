@@ -86,7 +86,7 @@
     align-items: center;
     justify-content: space-between;
     font-size: 1rem;
-    padding: 10px 1.5rem;
+    padding: 10px 15px;
 }
 
 .dropdown-icon {
@@ -94,6 +94,7 @@
     height: 16px;
     border-radius: 0px;
     pointer-events: none;
+    box-shadow: none;
 }
 
 .dropdown-list {
