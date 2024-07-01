@@ -16,6 +16,7 @@ import AboutusAdmin from "./components/pages/AboutusAdmin";
 import NavBarAdmin from "./components/NavBarAdmin";
 import ContactUsAdmin from "./components/pages/ContactusAdmin";
 import HomeAdmin from "./components/pages/HomeAdmin";
+import FindBook from "./components/pages/FindBook";
 
 
 
@@ -37,7 +38,7 @@ function App() {
           <Route path="/meds/:id" element={<MedsDetails />} />
           <Route path="/add" element={<MedsForm />} />
           <Route exact path="/contactus" element={<ContactUs />} />
-
+          <Route exact path="/findbook" element={<FindBook />} />
           <Route exact path="/Admin" element={<Ikaw/>}/>
           <Route exact path="/aboutusAdmin" element={<AboutusAdmin />} />
           <Route exact path="/contactusAdmin" element={<ContactUsAdmin />} />

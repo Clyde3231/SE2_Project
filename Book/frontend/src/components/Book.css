@@ -1,0 +1,223 @@
+.header-content {
+    min-height: 20vh;
+    flex-direction: column;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #D5C9AA;
+}
+
+.header-title {
+    font-size: 4.2rem;
+}
+
+.header-text {
+    margin-bottom: 2.8rem;
+    max-width: 770px;
+}
+
+.search-form {
+    width: 600px;
+    max-height: 3rem;
+    background: #f6f6f6;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px 0px 10px 0px;
+}
+
+.search-form-container {
+    display: flex;
+    max-width: 800px;
+    padding: 20px 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    font-size: 15px;
+    height: 3rem;
+}
+
+.search-button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    width: 60px;
+    height: 3rem;
+    border-radius: 10px;
+    background-color: #9d8854;
+}
+
+.search-button img {
+    max-width: 18px;
+    box-shadow: none;
+    margin: auto;
+    display: block;
+    border-radius: 0px;
+}
+
+.search-button:hover img {
+    background: #76663f;
+    pointer-events: none;
+}
+
+.search-button:hover {
+    background: #76663f;
+}
+
+.dropdown-container {
+    position: relative;
+    width: 100px;
+    border-radius: 10px;
+    border: 0.5px solid rgba(135, 133, 133, 0.409);
+    background-color: white;
+    cursor: pointer;
+}
+
+.dropdown-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+    padding: 10px 1.5rem;
+}
+
+.dropdown-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 0px;
+    pointer-events: none;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 3.2rem;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    list-style-type: none;
+    box-shadow: 0 0.5px 2px #666;
+    border: none;
+}
+
+.dropdown-list-item {
+    text-align: left;
+    font-size: 0.9rem;
+    border-radius: 15px;
+    padding: 1rem 0 1rem 1rem;
+    cursor: pointer;
+    transition: margin-left 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-list-item:hover {
+    margin-left: 0.5rem;
+    color: #cab287;
+}
+
+.header-title,
+.header-text,
+.dropdown-text,
+.dropdown-list-item {
+    user-select: none;
+}
+
+.Book-Section {
+    display: block;
+    background-color: #D5C9AA;
+    padding-bottom: 100px;
+}
+
+.book-item-container {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.book-item {
+    background-color: #FFFFFF;
+    width: 190px;
+    display: inline;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 40px;
+    border: 0.5px solid rgba(135, 133, 133, 0.409);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    
+}
+
+.book-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.book-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.book-image {
+    width: 100%;
+    height: auto;
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    
+}
+
+.book-content {
+    padding: 0px 10px 10px 20px;
+    text-align: left;
+}
+
+.book-title h6 {
+    margin: 5px;
+    font-size: 20px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.book-description p {
+    margin: 5px;
+    font-size: 13px;
+    text-align: left;
+}
+
+.book-rating {
+    align-items: right;
+    display: flex;
+    justify-content: right;
+}
+
+.book-rating p {
+    font-size: 13px;
+    margin: 0 0 0 5px;
+    padding: 0px;
+}
+
+.book-rating img {
+    max-width: 100%;
+    border-radius: 0px;
+    height: 16px;
+    width: 16px;
+    pointer-events: none;
+    box-shadow: none;
+}
