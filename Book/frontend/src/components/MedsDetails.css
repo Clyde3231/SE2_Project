@@ -45,14 +45,14 @@
   }
   
   /* Style for image */
-  img {
+  /* img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     transition: transform 0.3s ease-in-out;
-  }
+  } */
   
   img:hover {
     transform: scale(1.1);

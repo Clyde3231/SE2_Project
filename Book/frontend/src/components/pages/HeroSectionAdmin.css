@@ -1,77 +1,63 @@
-/* ORIGINAL CSS */
-video {
-  object-fit: cover;
+.adminBG {
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  position: fixed;
+  object-fit: cover;
   z-index: -1;
+  pointer-events: none;
+
 }
 
-.hero-container {
-  /* background: url('/images/img-home.jpg') center center/cover no-repeat; */
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+
+.adminContent h1 {
+  color: white;
+  font-size: 110px;
+  padding-top: 150px;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+ 
+.adminContent p {
+  color: white;
+  font-size: 30px;
   justify-content: center;
-  align-items: center;
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
-  object-fit: contain;
+  display: flex;
+  font-family: 'Times New Roman', Times, serif;
 }
-.hero-container > h1 {
+
+
+/*
+.homeContent h1 {
   color: white;
-  font-size: 90px;
-  margin-top: -100px;
+  font-size: 110px;
+  padding-top: 200px;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-
-.hero-container > p {
-  margin-top: 8px;
+.homeContent p {
   color: white;
-  font-size: 32px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
+  font-size: 30px;
+  justify-content: center;
+  display: flex;
+  font-family: 'Times New Roman', Times, serif;
 }
+
+
 .hero-btns{
+  font-family: 'Times New Roman', Times, serif;
   margin-top: 32px;
-}
-.hero-btns .btn {
-  margin: 6px;
+  text-align: center;
+
 }
 
 
 .fa-play-circle {
   margin-left: 4px;
 
-}
+} */
 
-@media screen and (max-width: 960px) {
-  .hero-container > h1 {
-    font-size: 70px;
-    margin-top: -150px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .hero-container > h1 {
-    font-size: 50px;
-    margin-top: -100px;
-  }
-
-  .hero-container > p {
-    font-size: 30px;
-  }
-  
-  .btn-mobile {
-    display: block;
-    text-decoration: none;
-  }
-
-  .btn {
-    width: 100%;
-  }
-}
-  
 
 /* CSS NI KESHA
 .hero-container {

@@ -28,7 +28,7 @@ function Navbar() {
         <div className="navbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
             <a>
-              <img src="/images/newLogo.png" alt="Logo" />
+              <img src="/images/bookLogo.png" alt="Logo" />
             </a>
             {/* <i className="fab fa-react"></i> */}
           </Link>
@@ -53,7 +53,7 @@ function Navbar() {
             <li className="nav-item">
               {button? (
                 <Button to="/register" buttonStyle="btn--outline">
-                  Register <i className="fas fa-arrow-right" />
+                  Register <i class="fa fa-user-plus"></i>
                 </Button>
               ) : (
                 <Link to="/register" className="nav-links-mobile" onClick={closeMobileMenu}>
