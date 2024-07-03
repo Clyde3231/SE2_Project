@@ -10,11 +10,13 @@ import HeroSection from '../HeroSection';
 function Home() {
   return (
     <>
+      <div className='home-screen'>
     <Navbar/>
-      <HeroSection/>
-      {/* <Cards /> */}
+      <HeroSection />
       <Footer />
+      </div>
     </>
+    
   );
 }
 
