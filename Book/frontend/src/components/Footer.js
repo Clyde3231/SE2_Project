@@ -6,6 +6,9 @@ function Footer() {
 
   return (
     <div className="footer-container">
+      <div className="footer-text"> 
+            © READER'S REALM 2024
+      </div>
 {/*      
       <div className="footer-links">
         <div className="footer-link-wrapper">
@@ -25,18 +28,18 @@ function Footer() {
           </div>
         </div>
 
-      </div> */}
+      </div> 
       <section className="social-media">
         <div className="social-media-wrap">
-          {/* <div className="footer-logo"> */}
+          {/* <div className="footer-logo">
             <Link to="/" className="social-logo">
             Reader's Realm
               <i className="fab fa-react"></i>
             </Link>
-          {/* </div> */}
+           </div> 
           <small className="website-rights">Reader's Realm © 2024</small>
         </div>
-      </section>
+      </section>*/}
 
     </div>
 

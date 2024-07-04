@@ -5,27 +5,22 @@ import "./HeroSectionAdmin.css";
 
 function HeroSectionAdmin() {
   return (
-    <div className="hero-container">
-      {/* Background image */}
-      <img src="/images/booksBG.png" alt="Books background" />
+    <div className="hero-admin-container">
+
 
       {/* Heading and paragraph */}
-      <div className="hero-content">
+      <div className="hero-admin-content">
         <h1>Discover Your Next <br></br> Great Read</h1>
         <p>Thousands of books at your fingertips. Explore our collection now.</p>
+        <div className="hero-admin-btns">
+          <Button to="/signin" buttonStyle="btn--primary">
+            Find a Book  
+          </Button>
+      </div>
       </div>
 
       {/* Button */}
-      <div className="hero-btns">
-        <Button
-          to="/products"
-          className="btns"
-          buttonStyle="btn--primary"
-          buttonSize="btn--large"
-          onClick={() => console.log("hey")}>
-          Find a Book <i class="fa-sharp fa-thin fa-books"></i>
-        </Button>
-      </div>
+
     </div>
   );
 }

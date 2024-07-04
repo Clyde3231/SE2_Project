@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Book.css";
+import axios from "axios";
+import BookItem from "./BookItem";
 
 function Book() {
     const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +15,20 @@ function Book() {
       setSelectedItem(item);
       setIsOpen(false);
     };
+    const [medicines, setMedicines] = useState([]);
 
+    useEffect(() => {
+      const fetchMeds = async () => {
+        try {
+          const response = await axios.get("http://127.0.0.1:8000/app/meds/");
+          setMedicines(response.data.reverse()); // Reverse the array before setting it
+        } catch (error) {
+          console.error("Error fetching medicines:", error);
+        }
+      };
+  
+      fetchMeds();
+    }, []);
 return (
     <div className="content">
       <div className="header-content">
@@ -48,11 +63,40 @@ return (
         </div>
       </div>
     <div className="Book-Section">
+        <div className="cards__itemsprod">
+                {medicines.map((medicine) => (
+                <div key={medicine.medId}>
+                    <BookItem
+                    src={medicine.image} // Replace 'src' with the image field in your model
+                    text={medicine.medName} // Replace 'text' with the name field in your model
+                    label="Medicine" // Label or any specific information
+                    path={`/meds/${medicine.medId}`} // Path based on the ID
+                    />
+                </div>
+                ))}
+            </div>
             {/* <div className="Book-Header">
                 <h1>Your Search Result</h1>
-            </div> */}
-            <div className="book-item-container">
+            </div> 
+            */}<div className="book-item-container">
                 <div className="book-item">
+                    <div className="book-image">
+                    <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
+                    </div>
+                    <div className="book-content">
+                            <div className="book-title">
+                            <h6>Book Title</h6>
+                            </div>
+                            <div className="book-description">
+                                <p>Lorem Ipsum</p>
+                            </div>
+                        <div className="book-rating">
+                            <img src="images/star.png" alt="search-icon" />
+                            <p>4.5</p>
+                        </div>
+                    </div>
+                </div>
+                {/* <div className="book-item">
                     <div className="book-image">
                     <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
                     </div>
@@ -204,24 +248,7 @@ return (
                             <p>4.5</p>
                         </div>
                     </div>
-                </div>
-                <div className="book-item">
-                    <div className="book-image">
-                    <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
-                    </div>
-                    <div className="book-content">
-                            <div className="book-title">
-                            <h6>Book Title</h6>
-                            </div>
-                            <div className="book-description">
-                                <p>Lorem Ipsum</p>
-                            </div>
-                        <div className="book-rating">
-                            <img src="images/star.png" alt="search-icon" />
-                            <p>4.5</p>
-                        </div>
-                    </div>
-                </div>
+                </div>*/}
                 
             </div>
 

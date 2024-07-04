@@ -1,4 +1,4 @@
-/* General Styles */
+/* General Styles
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
 
 body {
@@ -8,13 +8,13 @@ body {
   box-sizing: border-box;
 }
 
-/* Container */
+ //Container 
 .container {
   display: flex;
   height: 100vh;
 }
 
-/* Left Side */
+// Left Side 
 #left-side {
   width: 50%;
   position: relative;
@@ -32,7 +32,7 @@ body {
   outline: none;
 }
 
-/* Right Side */
+ Right Side 
 #right-side {
   width: 50%;
   background-color: #f2e7d5;
@@ -44,16 +44,16 @@ body {
 }
 
 .logo-image {
-  max-width: 250px; /* Adjust the size as needed */
-  margin-bottom: 10px; /* Reduced space */
-  border: none; /* Ensure no border is applied */
-  outline: none; /* Ensure no outline is applied */
-  box-shadow: none; /* Ensure no shadow is applied */
-  margin: 0; /* Ensure no margin is applied */
-  padding: 0; /* Ensure no padding is applied */
+  max-width: 250px; /* Adjust the size as needed 
+  margin-bottom: 10px; /* Reduced space 
+  border: none; /* Ensure no border is applied 
+  outline: none; /* Ensure no outline is applied 
+  box-shadow: none; /* Ensure no shadow is applied
+  margin: 0; /* Ensure no margin is applied 
+  padding: 0; /* Ensure no padding is applied 
 }
 
-/* Login Form */
+ Login Form 
 .login-form {
   max-width: 400px;
   width: 100%;
@@ -62,7 +62,7 @@ body {
 
 .login-form h2 {
   font-size: 32px;
-  margin-bottom: 10px; /* Reduced space */
+  margin-bottom: 10px; /* Reduced space 
   color: #4b2a2a;
   text-align: center;
   font-family: 'EB Garamond', serif;
@@ -123,4 +123,4 @@ input {
   font-size: 18px;
   margin-top: 10px;
   font-family: 'EB Garamond', serif;
-}
+} */

@@ -1,144 +1,54 @@
-/* ORIGINAL CSS */
-video {
-  object-fit: cover;
+.hero-admin-container {
+  position: relative;
   width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: -1;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.hero-container {
-  /* background: url('/images/img-home.jpg') center center/cover no-repeat; */
-  height: 100vh;
+.hero-admin-content {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
-  object-fit: contain;
-}
-.hero-container > h1 {
+  text-align: center;
   color: white;
-  font-size: 90px;
-  margin-top: -100px;
+  background: url('../../../public/images/bookBackground.jpeg') center center/cover no-repeat; /*copy background image path*/
+  padding: 20px;
+  box-sizing: border-box;
 }
 
+.hero-admin-content > h1 {
+  font-size: 5vw;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 1rem;
+}
 
-.hero-container > p {
-  margin-top: 8px;
+.hero-admin-content > p {
   color: white;
-  font-size: 32px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
+  font-size: 2vw;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 2rem;
 }
-.hero-btns{
+
+.hero-admin-btns {
   margin-top: 32px;
 }
-.hero-btns .btn {
+
+.hero-admin-btns .btn {
   margin: 6px;
-}
-
-
-.fa-play-circle {
-  margin-left: 4px;
-
-}
-
-@media screen and (max-width: 960px) {
-  .hero-container > h1 {
-    font-size: 70px;
-    margin-top: -150px;
-  }
 }
 
 @media screen and (max-width: 768px) {
-  .hero-container > h1 {
-    font-size: 50px;
-    margin-top: -100px;
+  .hero-admin-content > h1 {
+    font-size: 8vw;
   }
 
-  .hero-container > p {
-    font-size: 30px;
-  }
-  
-  .btn-mobile {
-    display: block;
-    text-decoration: none;
-  }
-
-  .btn {
-    width: 100%;
+  .hero-admin-content > p {
+    font-size: 4vw;
   }
 }
-  
-
-/* CSS NI KESHA
-.hero-container {
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* Other styles (if needed) */
-  /* background-size: cover; /* Ensure the image covers the entire container */
-  /* background-attachment: fixed; /* Keep the image fixed */
-/* }  
-
-
-.hero-content {
-  position: relative; /* Ensure content is positioned correctly */
-/*  z-index: 1; /* Bring content to the front */
-/*}
-
-.hero-content {
-  color: white;
-  margin-top: -750px;
-}
-
-p {
-  color: white;
-  font-size: 30px;
-  justify-content: center;
-  display: flex;
-  font-family: 'Times New Roman', Times, serif;
-}
-
-h1 {
-  font-size: 110px;
-  font-family: 'Times New Roman', Times, serif;
-}
-
-.cards-heading {
-  font-size: 70px;
-  margin-top: 300px;
-  
-
-}
-
-.hero-btns {
-  margin-top: 32px;
-  z-index: 1;
-}
-
-.hero-btns .btn {
-  margin: 6px;
-  font-family: 'Times New Roman', Times, serif;
-}
-
-.fa-play-circle {
-  margin-left: 4px;
-
-}
-
-
-.btn-mobile {
-  display: block;
-  text-decoration: none;
-}
-
-.btn {
-  width: 100%;
-} 
-*/

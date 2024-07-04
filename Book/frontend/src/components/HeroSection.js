@@ -1,33 +1,18 @@
 import React from "react";
-import "../App.css";
-import { Button } from "./Button";
 import "./HeroSection.css";
+import { Button } from "./Button";
 
 function HeroSection() {
   return (
-    <div className="hero-container">
-      <video src="/videos/doc1.mp4" autoPlay loop muted />
-      <h1>Welcome to St. John's PharmAssist!</h1>
-      <p>We're always ready to assist!</p>
-      <div className="hero-btns">
-        <Button
-          to="/aboutus"
-          className="btns"
-          buttonStyle="btn--outline"
-          buttonSize="btn--large"
-        >
-          ABOUT US <i className="far fa-address-card" />
-        </Button>
-
-        <Button
-          to="/products"
-          className="btns"
-          buttonStyle="btn--primary"
-          buttonSize="btn--large"
-          onClick={() => console.log("hey")}
-        >
-          OUR PRODUCTS <i className="fas fa-capsules" />
-        </Button>
+    <div className="hero-section">
+      <div className="hero-content">
+        <h1>Discover Your Next <br /> Great Read</h1>
+        <p>Thousands of books at your fingertips. Explore our collection now!</p>
+        <div className="hero-btn-container">
+          <Button to="/signin" buttonStyle="btn--primary">
+            Find a Book  
+          </Button>
+        </div>
       </div>
     </div>
   );

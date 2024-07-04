@@ -5,7 +5,19 @@
   font-family: 'PT Sans', sans-serif;
 }
 
-.home,
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.home-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* .home,
 .products,
 .sign-up,
 .aboutus {  
@@ -31,7 +43,7 @@
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
-}
+} */
 
 /* LOG IN FORM */
 /* 

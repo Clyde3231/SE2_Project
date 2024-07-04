@@ -59,8 +59,6 @@ function Cards() {
             </article>
           </SwiperSlide>
         </Swiper>
-        <div class="swiper-button-next"><i class="ri-arrow-right-s-line"></i></div>
-        <div class="swiper-button-prev">Custom</div>
 
       </div>
     </section>
