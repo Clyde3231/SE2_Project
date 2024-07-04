@@ -28,7 +28,7 @@
   align-items: center;
   color: #fff;
   text-decoration: none;  
-  padding-top: 10px; 
+  padding-top: 30px; 
   padding-bottom: 25px;  
   
 }
@@ -54,6 +54,7 @@
 
 .nav-item {
   height: 45px;
+  border: white;
 }
 
 .nav-links {

@@ -11,7 +11,7 @@ function Home() {
   return (
     <>
     <Navbar/>
-      <HeroSectionAdmin />
+      <HeroSectionAdmin/>
       <Cards />
       <Footer />
     </>

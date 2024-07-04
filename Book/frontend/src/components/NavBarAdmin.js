@@ -26,9 +26,9 @@ function Navbar() {
     <>
       <nav className="navbar">
         <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+          <Link to="/" className="navbar-logo">
             <a>
-              <img src="/images/newLogo.png" alt="Logo" />
+              <img src="/images/bookLogo.png" alt="Logo" />
             </a>
             {/* <i className="fab fa-react"></i> */}
           </Link>
@@ -39,45 +39,12 @@ function Navbar() {
           </div>
           
           <ul className={click? "nav-menu active" : "nav-menu"}>
-            {/* <li className="nav-item">
-              <Link to="../HomeAdmin" className="nav-links" onClick={closeMobileMenu}>
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/Admin"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Products
-              </Link>
-            </li> */}
-
-            {/* <li className="nav-item">
-              <Link
-                to="/aboutusAdmin"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                About Us
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link
-                to="/contactusAdmin"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Contact Us
-              </Link>
-            </li> */}
+            
 
             <li className="nav-item">
               {button? (
                 <Button to="/" buttonStyle="btn--outline">
-                  Log Out <i className="fas fa-arrow-right" />
+                  Log Out <i class="fa fa-arrow-right"></i>
                 </Button>
               ) : (
                 <Link to="/" className="nav-links-mobile" onClick={closeMobileMenu}>

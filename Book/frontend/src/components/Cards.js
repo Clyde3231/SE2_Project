@@ -9,9 +9,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 function Cards() {
   return (
     <section className="section_featured">
-      <h2 className="section_title">
-        Featured Books
-        </h2>
+      <h2 className="section_title">Featured Books</h2>
 
       <div className="featured_container">
         <Swiper
@@ -19,9 +17,8 @@ function Cards() {
           spaceBetween={30}
           slidesPerView={5}
           navigation
-          pagination={{ clickable: true }}
+          pagination={{ clickable: true }}>
           
-        >
           <SwiperSlide>
             <article className="featured_card">
               <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
@@ -59,8 +56,7 @@ function Cards() {
             </article>
           </SwiperSlide>
         </Swiper>
-        <div class="swiper-button-next"><i class="ri-arrow-right-s-line"></i></div>
-        <div class="swiper-button-prev">Custom</div>
+    
 
       </div>
     </section>
