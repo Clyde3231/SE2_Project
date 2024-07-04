@@ -7,7 +7,8 @@ import MedsDetails from "./components/MedsDetails";
 import MedsForm from "./components/MedsForm";
 import Home from "./components/pages/Home";
 import Product from "./components/pages/Product";
-import SignUp from "./components/pages/SignUp";
+import Register from "./components/pages/Register";
+import SignIn from "./components/pages/SignIn";
 import Aboutus from "./components/pages/Aboutus";
 import ContactUs from "./components/pages/Contactus";
 import Ikaw from "./components/ikaw";
@@ -30,7 +31,8 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/aboutus" element={<Aboutus />} />
           <Route exact path="/products" element={<Product />} />
-          <Route exact path="/signin" element={<SignUp />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/signin" element={<SignIn />} />
           <Route exact path="/medlist" element={<MedsList />} />
           <Route path="/meds/:id" element={<MedsDetails />} />
           <Route path="/add" element={<MedsForm />} />

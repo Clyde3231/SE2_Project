@@ -27,14 +27,19 @@ function Navbar() {
       <nav className="navbar">
         <div className="navbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            St. John's PharmAssist
-            <i className="fab fa-react"></i>
+            <a>
+              <img src="/images/newLogo.png" alt="Logo" />
+            </a>
+            {/* <i className="fab fa-react"></i> */}
           </Link>
+
+
           <div className="menu-icon" onClick={handleClick}>
             <i className={click? "fas fa-times" : "fas fa-bars"} />
           </div>
+          
           <ul className={click? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="../HomeAdmin" className="nav-links" onClick={closeMobileMenu}>
                 Home
               </Link>
@@ -47,7 +52,7 @@ function Navbar() {
               >
                 Products
               </Link>
-            </li>
+            </li> */}
 
             {/* <li className="nav-item">
               <Link
