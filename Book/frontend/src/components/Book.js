@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Book.css";
 import axios from "axios";
 import BookItem from "./BookItem";
+import PropTypes from "prop-types";
 
 function Book() {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +30,15 @@ function Book() {
   
       fetchMeds();
     }, []);
+
+    BookItem.propTypes = {
+        src: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        path: PropTypes.string.isRequired,
+        className: PropTypes.string,
+      };
+
 return (
     <div className="content">
       <div className="header-content">
@@ -63,22 +73,20 @@ return (
         </div>
       </div>
     <div className="Book-Section">
-        <div className="cards__itemsprod">
-                {medicines.map((medicine) => (
-                <div key={medicine.medId}>
-                    <BookItem
-                    src={medicine.image} // Replace 'src' with the image field in your model
-                    text={medicine.medName} // Replace 'text' with the name field in your model
-                    label="Medicine" // Label or any specific information
-                    path={`/meds/${medicine.medId}`} // Path based on the ID
-                    />
-                </div>
-                ))}
-            </div>
             {/* <div className="Book-Header">
                 <h1>Your Search Result</h1>
             </div> 
             */}<div className="book-item-container">
+                {medicines.map((medicine) => (
+                <div className="book-item" key={medicine.medId}>
+                    <BookItem
+                    src={medicine.image} // Replace 'src' with the image field in your model
+                    text={medicine.medName} // Replace 'text' with the name field in your model
+                    label="Medicine" // Label or any specific information
+                    // path={`/meds/${medicine.medId}`} // Path based on the ID
+                    />
+                </div>
+                ))}
                 <div className="book-item">
                     <div className="book-image">
                     <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
@@ -96,163 +104,7 @@ return (
                         </div>
                     </div>
                 </div>
-                {/* <div className="book-item">
-                    <div className="book-image">
-                    <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
-                    </div>
-                    <div className="book-content">
-                            <div className="book-title">
-                            <h6>Book Title</h6>
-                            </div>
-                            <div className="book-description">
-                                <p>Lorem Ipsum</p>
-                            </div>
-                        <div className="book-rating">
-                            <img src="images/star.png" alt="search-icon" />
-                            <p>4.5</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="book-item">
-                    <div className="book-image">
-                    <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
-                    </div>
-                    <div className="book-content">
-                            <div className="book-title">
-                            <h6>Book Title</h6>
-                            </div>
-                            <div className="book-description">
-                                <p>Lorem Ipsum</p>
-                            </div>
-                        <div className="book-rating">
-                            <img src="images/star.png" alt="search-icon" />
-                            <p>4.5</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="book-item">
-                    <div className="book-image">
-                    <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
-                    </div>
-                    <div className="book-content">
-                            <div className="book-title">
-                            <h6>Book Title</h6>
-                            </div>
-                            <div className="book-description">
-                                <p>Lorem Ipsum</p>
-                            </div>
-                        <div className="book-rating">
-                            <img src="images/star.png" alt="search-icon" />
-                            <p>4.5</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="book-item">
-                    <div className="book-image">
-                    <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
-                    </div>
-                    <div className="book-content">
-                            <div className="book-title">
-                            <h6>Book Title</h6>
-                            </div>
-                            <div className="book-description">
-                                <p>Lorem Ipsum</p>
-                            </div>
-                        <div className="book-rating">
-                            <img src="images/star.png" alt="search-icon" />
-                            <p>4.5</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="book-item">
-                    <div className="book-image">
-                    <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
-                    </div>
-                    <div className="book-content">
-                            <div className="book-title">
-                            <h6>Book Title</h6>
-                            </div>
-                            <div className="book-description">
-                                <p>Lorem Ipsum</p>
-                            </div>
-                        <div className="book-rating">
-                            <img src="images/star.png" alt="search-icon" />
-                            <p>4.5</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="book-item">
-                    <div className="book-image">
-                    <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
-                    </div>
-                    <div className="book-content">
-                            <div className="book-title">
-                            <h6>Book Title</h6>
-                            </div>
-                            <div className="book-description">
-                                <p>Lorem Ipsum</p>
-                            </div>
-                        <div className="book-rating">
-                            <img src="images/star.png" alt="search-icon" />
-                            <p>4.5</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="book-item">
-                    <div className="book-image">
-                    <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
-                    </div>
-                    <div className="book-content">
-                            <div className="book-title">
-                            <h6>Book Title</h6>
-                            </div>
-                            <div className="book-description">
-                                <p>Lorem Ipsum</p>
-                            </div>
-                        <div className="book-rating">
-                            <img src="images/star.png" alt="search-icon" />
-                            <p>4.5</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="book-item">
-                    <div className="book-image">
-                    <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
-                    </div>
-                    <div className="book-content">
-                            <div className="book-title">
-                            <h6>Book Title</h6>
-                            </div>
-                            <div className="book-description">
-                                <p>Lorem Ipsum</p>
-                            </div>
-                        <div className="book-rating">
-                            <img src="images/star.png" alt="search-icon" />
-                            <p>4.5</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="book-item">
-                    <div className="book-image">
-                    <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
-                    </div>
-                    <div className="book-content">
-                            <div className="book-title">
-                            <h6>Book Title</h6>
-                            </div>
-                            <div className="book-description">
-                                <p>Lorem Ipsum</p>
-                            </div>
-                        <div className="book-rating">
-                            <img src="images/star.png" alt="search-icon" />
-                            <p>4.5</p>
-                        </div>
-                    </div>
-                </div>*/}
-                
             </div>
-
-
         </div>
 </div>
 );

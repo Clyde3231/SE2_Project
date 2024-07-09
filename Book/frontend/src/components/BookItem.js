@@ -1,24 +1,28 @@
+// BookItem.js
 import React from "react";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import "./Book.css"; // Import CSS for BookItem
 
-
-function BookItem(props) {
+function BookItem({ src, text, label, path, className }) {
   return (
-    <div className="cards__item" >
-      <Link className="cards__item__link" to={props.path}>
-        <figure className="cards__item__pic-wrap" data-category={props.label}>
-          <img
-            className="cards__item__img"
-            alt={props.altText || "Image"}
-            src={props.src}
-          />
-        </figure>
-        <div className="cards__item__info">
-          <h5 className="cards__item__text">{props.text}</h5>
+    <>
+      <div>
+        <img src={src} alt={text} className={`book-image ${className}`} />
+      </div>
+      <div className="book-content">
+        <div className="book-title">
+          <h6>{text}</h6>
         </div>
-      </Link>
-    </div>
+        <div className="book-description">
+          <span>{label}</span>
+        </div>
+        <div className="book-rating">
+          <p>View Details</p>
+        </div>
+      </div>
+    </>
   );
 }
+
 
 export default BookItem;

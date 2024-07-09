@@ -1,4 +1,4 @@
-.meds-details-container {
+/* .meds-details-container {
     max-width: 800px;
     margin: auto;
     padding: 40px;
@@ -25,15 +25,15 @@
  strong {
   font-weight: bold;
   color: #333;
-  margin-top: 20px; /* Adjusted margin-top for spacing above strong elements */
-}
+  margin-top: 20px; /* Adjusted margin-top for spacing above strong elements 
+  }
   
-  /* Add some styles for specific details */
+  /* Add some styles for specific details 
   p strong {
     color: #007bff;
   }
   
-  /* Style for availability status */
+  /* Style for availability status 
   p.availability {
     color: #28a745;
     font-weight: bold;
@@ -44,7 +44,7 @@
     font-weight: bold;
   }
   
-  /* Style for image */
+  /* Style for image 
   img {
     max-width: 100%;
     height: auto;
@@ -58,7 +58,7 @@
     transform: scale(1.1);
   }
   
-  /* Additional styling for a more polished look */
+  /* Additional styling for a more polished look 
   .container-inner {
     display: flex;
     justify-content: space-between;
@@ -68,7 +68,7 @@
     flex: 0 0 48%;
   }
   
-  /* Add a subtle hover effect for links */
+  /* Add a subtle hover effect for links 
   a {
     color: #007bff;
     transition: color 0.3s ease-in-out;
@@ -95,4 +95,4 @@
   .image-container img:hover {
     transform: scale(1.1);
   }
-  
+   */

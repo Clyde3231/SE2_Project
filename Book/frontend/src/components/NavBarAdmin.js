@@ -3,11 +3,22 @@ import { Link } from "react-router-dom";
 import { Button } from "./Button";
 import "./Navbar.css";
 
+
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const [dropdown, setDropdown] = useState(false);
+  const [dropdownBooks, setDropdownBooks] = useState(false);
+
+
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  const handleDropdown = () => setDropdown(!dropdown);
+  const closeDropdown = () => setDropdown(!dropdown);
+  const toggleDropdown = () => setDropdown(!dropdown);
+  const toggleDropdownBooks = () => setDropdownBooks(!dropdownBooks);
+  const closeDropdownBooks = () => setDropdownBooks(false);
+
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -20,7 +31,9 @@ function Navbar() {
     showButton();
   }, []);
 
+
   window.addEventListener("resize", showButton);
+
 
   return (
     <>
@@ -34,17 +47,43 @@ function Navbar() {
           </Link>
 
 
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click? "fas fa-times" : "fas fa-bars"} />
+
+
+          <div className="search-container">
+            <i className="fas fa-search search-icon"></i>
+            <input type="text" placeholder="Search..." className="search-input" />
+           
           </div>
-          
+
+
+       
+         
           <ul className={click? "nav-menu active" : "nav-menu"}>
-            {/* <li className="nav-item">
-              <Link to="../HomeAdmin" className="nav-links" onClick={closeMobileMenu}>
-                Home
-              </Link>
+          <li className="nav-item">
+              <div className="nav-links-select" onClick={toggleDropdownBooks}>
+                <span>Select</span>
+                <i className="fas fa-chevron-down arrow-down-icon" />
+              </div>
+              {dropdownBooks && (
+                <div className="dropdown-menu" onClick={closeDropdownBooks}>
+                  <Link to="/findbook" className="dropdown-item" onClick={closeMobileMenu}>
+                    Find a Book
+                  </Link>
+                  <Link to="/findauthor" className="dropdown-item" onClick={closeMobileMenu}>
+                    Find an Author
+                  </Link>
+                </div>
+              )}
             </li>
-            <li className="nav-item">
+
+
+           
+
+
+           
+
+
+            {/* <li className="nav-item">
               <Link
                 to="/Admin"
                 className="nav-links"
@@ -53,6 +92,7 @@ function Navbar() {
                 Products
               </Link>
             </li> */}
+
 
             {/* <li className="nav-item">
               <Link
@@ -64,6 +104,7 @@ function Navbar() {
               </Link>
             </li>
 
+
             <li className="nav-item">
               <Link
                 to="/contactusAdmin"
@@ -73,23 +114,34 @@ function Navbar() {
                 Contact Us
               </Link>
             </li> */}
-
-            <li className="nav-item">
-              {button? (
-                <Button to="/" buttonStyle="btn--outline">
-                  Log Out <i className="fas fa-arrow-right" />
-                </Button>
-              ) : (
-                <Link to="/" className="nav-links-mobile" onClick={closeMobileMenu}>
-                  Log Out
-                </Link>
+             <li className="nav-item">
+            <div className="nav-links-drop" onClick={(e) => {
+             
+                    toggleDropdown();
+                    if (dropdown) {
+                      closeDropdown();
+                    }
+                  }}>
+                 <i className="fas fa-bars" />
+              </div>
+              {dropdown && (
+                <div className="dropdown-menu" onClick={closeDropdown}>
+                  <Link to="/Edit" className="dropdown-item" onClick={closeMobileMenu}>
+                    Edit Profile
+                  </Link>
+                  <Link to="/" className="dropdown-item" onClick={closeMobileMenu}>
+                    Log out
+                  </Link>
+                </div>
               )}
             </li>
+             
           </ul>
         </div>
       </nav>
     </>
   );
 }
+
 
 export default Navbar;

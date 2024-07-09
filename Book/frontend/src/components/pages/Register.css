@@ -36,6 +36,7 @@ body {
 
 /* Right Side */
 #right-side {
+  height: 100%;
   width: 50%;
   background-color: #f2e7d5;
   display: flex;
@@ -74,7 +75,7 @@ body {
 }
 
 .form-group-email, .form-group-username, .form-group-password {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: left;
 }
 

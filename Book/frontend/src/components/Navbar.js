@@ -16,6 +16,7 @@ function Navbar() {
       setButton(true);
     }
   };
+
   useEffect(() => {
     showButton();
   }, []);
@@ -23,48 +24,42 @@ function Navbar() {
   window.addEventListener("resize", showButton);
 
   return (
-    <>
-      <nav className="navbar">
-        <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            <a>
-              <img src="/images/newLogo.png" alt="Logo" />
-            </a>
-            {/* <i className="fab fa-react"></i> */}
-          </Link>
-          
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click? "fas fa-times" : "fas fa-bars"} />
+    <nav className="navbar">
+      <div className="navbar-container">
+        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+          <img src="/images/bookLogo.png" alt="Logo" />
+        </Link>
+        
+        <div className="nav-menu">
+          <div className="nav-item">
+            {button ? (
+              <Button to="/signin" buttonStyle="btn--outline">
+                Log In <i className="fas fa-arrow-right" />
+              </Button>
+            ) : (
+              <Link to="/signin" className="nav-links-mobile" onClick={closeMobileMenu}>
+                Log In
+              </Link>
+            )}
           </div>
-
-          <ul className={click? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              {button? (
-                <Button to="/signin" buttonStyle="btn--outline">
-                  Log In <i className="fas fa-arrow-right" />
-                </Button>
-              ) : (
-                <Link to="/signin" className="nav-links-mobile" onClick={closeMobileMenu}>
-                  Log In
-                </Link>
-              )}
-            </li>
-
-            <li className="nav-item">
-              {button? (
-                <Button to="/register" buttonStyle="btn--outline">
-                  Register <i className="fas fa-arrow-right" />
-                </Button>
-              ) : (
-                <Link to="/register" className="nav-links-mobile" onClick={closeMobileMenu}>
-                  Register
-                </Link>
-              )}
-            </li>
-          </ul>
+          <div className="nav-item">
+            {button ? (
+              <Button to="/register" buttonStyle="btn--outline">
+                Register <i className="fa fa-user-plus"></i>
+              </Button>
+            ) : (
+              <Link to="/register" className="nav-links-mobile" onClick={closeMobileMenu}>
+                Register
+              </Link>
+            )}
+          </div>
         </div>
-      </nav>
-    </>
+
+        <div className="menu-icon" onClick={handleClick}>
+          <i className={click ? "fas fa-times" : "fas fa-bars"} />
+        </div>
+      </div>
+    </nav>
   );
 }
 

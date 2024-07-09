@@ -1,7 +1,8 @@
-.content{
-    /* height: calc(100svh - 2rem); */
+.content {
+    min-height: 100vh; 
     background-color: #D5C9AA;
-
+    display: flex;
+    flex-direction: column;
 }
 .header-content {
     min-height: 20vh;
@@ -136,10 +137,12 @@
 }
 
 .Book-Section {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     background-color: #D5C9AA;
-    padding-bottom: 100px;
-    height: calc(100svh - 24rem);
+    padding-bottom: 50px;
+    /* margin-bottom: 10px; */
 }
 
 .book-item-container {
@@ -147,7 +150,7 @@
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 40px 60px;
     justify-content: center;
 }
 
@@ -157,13 +160,13 @@
     display: inline;
     align-items: center;
     justify-content: center;
-    margin: 20px 40px;
     border: 0.5px solid rgba(135, 133, 133, 0.409);
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    
+    height: 100%; /* Ensure the item takes full height */
 }
+
 
 .book-item:hover {
     transform: translateY(-5px);
@@ -181,7 +184,7 @@
 
 .book-image {
     width: 100%;
-    height: auto;
+    min-height: 200px;
     padding-top: 15px;
     display: flex;
     align-items: center;
@@ -193,10 +196,11 @@
 .book-content {
     padding: 0px 10px 10px 20px;
     text-align: left;
+    flex-grow: 1;
 }
 
 .book-title h6 {
-    margin: 5px;
+    margin: 5px 5px 5px 0;
     font-size: 20px;
     text-align: left;
     font-weight: bold;
@@ -209,9 +213,10 @@
 }
 
 .book-rating {
-    align-items: right;
+    margin-top: auto; /* Push rating to the bottom */
+    align-items: center; /* Center items vertically */
     display: flex;
-    justify-content: right;
+    justify-content: flex-end; /* Align to the right */
 }
 
 .book-rating p {
