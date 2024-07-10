@@ -1,6 +1,5 @@
 // BookItem.js
 import React from "react";
-import PropTypes from "prop-types";
 import "./Book.css"; // Import CSS for BookItem
 
 function BookItem({ src, text, label, path, className }) {
@@ -13,12 +12,12 @@ function BookItem({ src, text, label, path, className }) {
         <div className="book-title">
           <h6>{text}</h6>
         </div>
-        <div className="book-description">
+        {/* <div className="book-description">
           <span>{label}</span>
-        </div>
-        <div className="book-rating">
+        </div> */}
+        {/* <div className="book-rating">
           <p>View Details</p>
-        </div>
+        </div> */}
       </div>
     </>
   );

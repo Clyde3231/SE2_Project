@@ -2,12 +2,49 @@ import React, { useState, useEffect } from "react";
 import "./Book.css";
 import axios from "axios";
 import BookItem from "./BookItem";
-import PropTypes from "prop-types";
+import { useNavigate, useLocation } from 'react-router-dom';
+axios.defaults.baseURL = 'http://localhost:5000';  // Replace with your Flask server URL
 
 function Book() {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState("All");
+    const [results, setResults] = useState([]);
+
+    const [searchQuery, setQuery] = useState('');
+    const [searchType, setSearchType] = useState('title');
+    const navigate = useNavigate();
+
+    const { search } = useLocation();
+    const queryParams = new URLSearchParams(search);
+    const query = queryParams.get('query');
+    const type = queryParams.get('type');
+    
+    const fetchResults = async (query, type) => {
+      try {
+          const response = await axios.get('/search', { params: { query, type } });
+          setResults(response.data || []);
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
+  };
+
+    useEffect(() => {
+      const setDefault = async () => {
+        try {
+          const response = await axios.get('/search', { params: { query, type } });
+          setResults(response.data || []);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };    
   
+      setDefault();
+    }, [query, type]);
+    
+    const handleSearch = (e) => {
+      e.preventDefault();
+      fetchResults(searchQuery, searchType.toLowerCase());
+    };
     const toggleDropdown = () => {
       setIsOpen(!isOpen);
     };
@@ -16,28 +53,7 @@ function Book() {
       setSelectedItem(item);
       setIsOpen(false);
     };
-    const [medicines, setMedicines] = useState([]);
 
-    useEffect(() => {
-      const fetchMeds = async () => {
-        try {
-          const response = await axios.get("http://127.0.0.1:8000/app/meds/");
-          setMedicines(response.data.reverse()); // Reverse the array before setting it
-        } catch (error) {
-          console.error("Error fetching medicines:", error);
-        }
-      };
-  
-      fetchMeds();
-    }, []);
-
-    BookItem.propTypes = {
-        src: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
-        path: PropTypes.string.isRequired,
-        className: PropTypes.string,
-      };
 
 return (
     <div className="content">
@@ -61,12 +77,14 @@ return (
                 </ul>
               )}
             </div>
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Search..."
-            />
-            <button type="submit" className="search-button">
+                <input
+                className="search-input"
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder={`Enter ${searchType} to search`}
+                />
+            <button onClick={handleSearch} type="submit" className="search-button">
               <img src="images/searchicon.png" alt="search-icon" />
             </button>
           </form>
@@ -77,13 +95,12 @@ return (
                 <h1>Your Search Result</h1>
             </div> 
             */}<div className="book-item-container">
-                {medicines.map((medicine) => (
-                <div className="book-item" key={medicine.medId}>
+                 {results.map((result, index) => (
+                <div className="book-item" key={index}>
                     <BookItem
-                    src={medicine.image} // Replace 'src' with the image field in your model
-                    text={medicine.medName} // Replace 'text' with the name field in your model
-                    label="Medicine" // Label or any specific information
-                    // path={`/meds/${medicine.medId}`} // Path based on the ID
+                    src={`http://covers.openlibrary.org/b/id/${result.cover_id}-M.jpg`} // Replace 'src' with the image field in your model
+                    text={result.title} // Replace 'text' with the name field in your model
+                    
                     />
                 </div>
                 ))}

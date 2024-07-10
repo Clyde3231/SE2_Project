@@ -1,6 +1,6 @@
 .navbar {
   background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
-  height: 80px;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,25 +8,44 @@
   position: sticky;
   top: 0;
   z-index: 999;
+  
+}
+
+.navbar-admin {
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  
 }
 
 .navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
-  max-width: 1500px;
+  height: auto;
   width: 100%;
+  margin:10px 0px;
   padding: 0 20px;
 }
 
 .navbar-logo {
-  justify-self: start;
+  justify-content: center;
   cursor: pointer;
+  font-size: 2rem;
   display: flex;
   align-items: center;
   color: #fff;
-  text-decoration: none;
+  text-decoration: none;  
+  
+}
+.navbar-logo img{
+  width: 130px;
 }
 
 .navbar-logo:hover {
@@ -35,23 +54,51 @@
   text-decoration: none;
 }
 
-.navbar-logo img {
-  height: 75px;
+.nav-admin-menu {
+  display: flex;
+  align-items: center;
+  grid-gap: 50px;
+  list-style: none;
+  text-align: center;
+}
+.navbar-container ul{
+  margin-top: 0;
+  margin-bottom: 0; /* Adjust as necessary */
 }
 
 .nav-menu {
   display: flex;
-  align-items: center;
-  list-style: none;
+  gap: 0px 50px;
   text-align: center;
-  margin-left: auto;
+  justify-content: center;
+  align-items: center;
+  position: absolute; /* Add this line */
+  left: 50%; /* Add this line */
+  transform: translateX(-50%); /* Add this line */
+  transition: all 0.5s ease;
 }
+
+.nav-menu.active {
+  background: #242222;
+  left: 0;
+  opacity: 1;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.nav-menu.active a{
+  background: #242222;
+  left: 0;
+  opacity: 1;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
 
 .nav-item {
   height: 45px;
-  border: white;
-  margin-left: 10px;
 }
+
 
 .nav-links {
   color: #fff;
@@ -62,6 +109,7 @@
   height: 100%;
 }
 
+
 .nav-links:hover {
   border-bottom: 4px solid #fff;
   padding-bottom: 10px;
@@ -69,6 +117,7 @@
   text-decoration: none;
   color: #fff;
 }
+
 
 .fa-bars {
   cursor: pointer;
@@ -80,81 +129,90 @@
   color: #fff;
 }
 
-.nav-links-mobile {
-  display: none;
+
+.fa-chevron-up{
+  color: white;
+}
+.fa-chevron-down{
+  color: white;
 }
 
-.menu-icon {
-  display: none;
-}
-
-.btn--outline {
-  background-color: transparent;
-  color: #fff;
-  padding: 8px 20px;
-  border: 1px solid var(--primary);
-  transition: all 0.3s ease-out;
-}
-
-.btn--outline:hover {
-  background-color: #fff;
-  color: #000;
-  transition: all 0.3s ease-out;
-}
-
-.search-container {
+/* Search Bar */
+.nav-search-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: #fff;
   border-radius: 20px;
-  padding: 5px 10px;
-  margin-bottom: 20px;
   width: 25%;
-  margin-left: 45%;
- 
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 10px;
 }
 
-
-.search-input {
-  border: none;
+.nav-search-input {
+  background: transparent;
+  flex: 1;
+  border: 0;
   outline: none;
-  padding: 5px;
-  font-size: 1rem;
-  flex-grow: 1;
+  font-size: 15px;
+  height: 3rem;
 }
 
 
 .search-icon {
-  color: #333;
-  font-size: 1.2rem;
+  box-shadow: none;
+  margin: auto;
+  display: block;
+  border-radius: 0px;
+  padding-left: 10px;
 }
 
-
-.dropdown-menu {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 80px;
-  left: 0;
-  position: static;
-  background: #333;
-  z-index: 1000;
-}
-
-
-.dropdown-item {
-  color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  width: 100%;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-
-.dropdown-item:hover {
-  background: #575757;
+/* End of Search */
+.nav-dropdown-container {
+  position: relative;
+  width: 100px;
+  border-radius: 10px;
   cursor: pointer;
+}
+
+.nav-dropdown-container:hover{
+  background-color:#3b362d ;
+}
+
+.nav-dropdown-container span{
+  color: white;
+}
+
+.nav-dropdown-text{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  padding: 10px 15px;
+}
+
+.nav-dropdown-list {
+  position: absolute;
+  top: 3.2rem;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  list-style-type: none;
+  box-shadow: 0 0.5px 2px #666;
+  border: none;
+}
+
+
+.nav-dropdown-list-item {
+  text-align: left;
+  font-size: 0.9rem;
+  border-radius: 15px;
+  padding: 1rem 0 1rem 1rem;
+  cursor: pointer;
+  transition: margin-left 0.2s ease, color 0.2s ease;
 }
 
 
@@ -168,15 +226,35 @@
 }
 
 
+.nav-dropdown-list-item:hover {
+  margin-left: 0.5rem;
+  color: #cab287;
+}
 .arrow-down-icon {
   font-size: 20px;
   color: #fff;
 }
 
+.nav-profile-dropdown-menu{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  position: static;
+  background: #333;
+  z-index: 1000;
+}
 
-
-
-.nav-links-drop:hover {
+.nav-profile-dropdown-items{
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+.nav-admin-links-drop:hover {
   border-radius: 4px;
 }
 
@@ -187,7 +265,7 @@
   }
 
 
-  .nav-menu {
+  .nav-admin-menu {
    
     display: flex;
     flex-direction: column;
@@ -201,7 +279,7 @@
   }
 
 
-  .nav-menu.active {
+  .nav-admin-menu.active {
     background: #242222;
     left: 0;
     opacity: 1;
@@ -210,7 +288,7 @@
   }
 
 
-  .nav-links {
+  .nav-admin-links {
     text-align: center;
     padding: 2rem;
     width: 100%;
@@ -218,7 +296,7 @@
   }
 
 
-  .nav-links:hover {
+  .nav-admin-links:hover {
     background-color: #fff;
     color: #242424;
     border-radius: 0;
@@ -231,7 +309,7 @@
   }
 
 
-  .nav-links-mobile {
+  .nav-admin-links-mobile {
     display: block;
     text-align: center;
     margin: 2rem auto;
@@ -247,7 +325,7 @@
   }
 
 
-  .nav-links-mobile:hover {
+  .nav-admin-links-mobile:hover {
     background: #fff;
     color: #242424;
     transition: 250ms;

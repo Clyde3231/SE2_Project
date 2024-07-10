@@ -17,10 +17,9 @@ import NavBarAdmin from "./components/NavBarAdmin";
 import ContactUsAdmin from "./components/pages/ContactusAdmin";
 import HomeAdmin from "./components/pages/HomeAdmin";
 import FindBook from "./components/pages/FindBook";
-
-
-
-
+import SearchResults from './components/SearchResults';
+import BookDetails from './components/BookDetails';
+import AuthorWorks from './components/AuthorWorks';
 
 function App() {
   return (
@@ -43,10 +42,10 @@ function App() {
           <Route exact path="/aboutusAdmin" element={<AboutusAdmin />} />
           <Route exact path="/contactusAdmin" element={<ContactUsAdmin />} />
           <Route exact path="/homeAdmin" element={<HomeAdmin />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/book/:key" element={<BookDetails />} />
+          <Route path="/author/:key" element={<AuthorWorks />} />
 
-
-          
-         
         </Routes>
       </BrowserRouter>
     </div>

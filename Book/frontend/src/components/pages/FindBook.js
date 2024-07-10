@@ -1,13 +1,13 @@
 import React from "react";
 import Footer from "../Footer";
-import Navbar from "../Navbar";
+import NavBarAdmin from "../NavBarAdmin";
 import Book from "../Book";
 
 
 export default function FindBook() {
   return (
     <>
-      <Navbar/>
+      <NavBarAdmin/>
       <Book/>
       <Footer/>
     </>
