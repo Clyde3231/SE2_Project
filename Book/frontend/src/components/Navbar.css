@@ -8,20 +8,6 @@
   position: sticky;
   top: 0;
   z-index: 999;
-  
-}
-
-.navbar-admin {
-  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  
 }
 
 .navbar-container {
@@ -30,10 +16,11 @@
   align-items: center;
   height: auto;
   width: 100%;
-  margin:10px 0px;
+  margin: 10px 0px;
   padding: 0 20px;
 }
 
+/* NAV LOGO */
 .navbar-logo {
   justify-content: center;
   cursor: pointer;
@@ -42,9 +29,8 @@
   align-items: center;
   color: #fff;
   text-decoration: none;  
-  
 }
-.navbar-logo img{
+.navbar-logo img {
   width: 130px;
 }
 
@@ -54,6 +40,7 @@
   text-decoration: none;
 }
 
+/* NAV ADMIN BUTTONS */
 .nav-admin-menu {
   display: flex;
   align-items: center;
@@ -61,21 +48,56 @@
   list-style: none;
   text-align: center;
 }
-.navbar-container ul{
+
+.navbar-container ul { /* removes ghost margin below ul  */
   margin-top: 0;
-  margin-bottom: 0; /* Adjust as necessary */
+  margin-bottom: 0;
 }
 
+.nav-findbook-container {
+  position: relative;
+  width: 100px;
+  border-radius: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  outline: solid 1px white;
+}
+
+.nav-findbook-container:hover {
+  background-color: #606060;
+}
+
+.nav-findbook-container span {
+  color: white;
+}
+
+.nav-findbook-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  padding: 10px 15px;
+}
+
+
+/* NAV USER BUTTONS */
 .nav-menu {
   display: flex;
   gap: 0px 50px;
   text-align: center;
   justify-content: center;
   align-items: center;
-  position: absolute; /* Add this line */
-  left: 50%; /* Add this line */
-  transform: translateX(-50%); /* Add this line */
+  position: absolute;
+  left: 50%; 
+  transform: translateX(-50%);
   transition: all 0.5s ease;
+}
+
+.nav-item btn:hover {
+  background: #fff;
+  color: #242424;
+  transition: 250ms;
 }
 
 .nav-menu.active {
@@ -86,39 +108,11 @@
   z-index: 1;
 }
 
-.nav-menu.active a{
-  background: #242222;
-  left: 0;
-  opacity: 1;
-  transition: all 0.5s ease;
-  z-index: 1;
-}
-
-
 .nav-item {
-  height: 45px;
+  font-size: 20px;
 }
 
-
-.nav-links {
-  color: #fff;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  height: 100%;
-}
-
-
-.nav-links:hover {
-  border-bottom: 4px solid #fff;
-  padding-bottom: 10px;
-  transition: all 0.2s ease-out;
-  text-decoration: none;
-  color: #fff;
-}
-
-
+/* NAV BURGER */
 .fa-bars {
   cursor: pointer;
   font-size: 40px;
@@ -129,144 +123,56 @@
   color: #fff;
 }
 
-
-.fa-chevron-up{
-  color: white;
-}
-.fa-chevron-down{
-  color: white;
+.fa-bars:hover{
+  color: #4c4c4c; /* This will change the color to black */
+  transition: color 0.3s ease;
 }
 
-/* Search Bar */
-.nav-search-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  border-radius: 20px;
-  width: 25%;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 10px;
-}
-
-.nav-search-input {
-  background: transparent;
-  flex: 1;
-  border: 0;
-  outline: none;
-  font-size: 15px;
-  height: 3rem;
-}
-
-
-.search-icon {
-  box-shadow: none;
-  margin: auto;
-  display: block;
-  border-radius: 0px;
-  padding-left: 10px;
-}
-
-/* End of Search */
-.nav-dropdown-container {
-  position: relative;
-  width: 100px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.nav-dropdown-container:hover{
-  background-color:#3b362d ;
-}
-
-.nav-dropdown-container span{
-  color: white;
-}
-
-.nav-dropdown-text{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 15px;
-  padding: 10px 15px;
-}
-
-.nav-dropdown-list {
-  position: absolute;
-  top: 3.2rem;
-  left: 0;
-  width: 100%;
-  background-color: white;
-  border-radius: 10px;
+/* NAV BURGER DROPDOWN */
+.nav-profile-dropdown-menu {
+  background: rgb(60, 60, 60);
   list-style-type: none;
   box-shadow: 0 0.5px 2px #666;
   border: none;
-}
-
-
-.nav-dropdown-list-item {
-  text-align: left;
-  font-size: 0.9rem;
-  border-radius: 15px;
-  padding: 1rem 0 1rem 1rem;
-  cursor: pointer;
-  transition: margin-left 0.2s ease, color 0.2s ease;
-}
-
-
-.nav-links-select {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  color: #fff;
-  font-size: 25px;
-  cursor: pointer;
-}
-
-
-.nav-dropdown-list-item:hover {
-  margin-left: 0.5rem;
-  color: #cab287;
-}
-.arrow-down-icon {
-  font-size: 20px;
-  color: #fff;
-}
-
-.nav-profile-dropdown-menu{
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 80px;
-  left: 0;
-  position: static;
-  background: #333;
+  top: 100%; /* Position it right below the parent element */
+  right: 0; /* Align it to the right of the parent element */
   z-index: 1000;
+  min-width: 120px; /* Set a minimum width for the dropdown */
 }
 
-.nav-profile-dropdown-items{
+.nav-profile-dropdown-menu:hover {
+  
+}
+
+.nav-profile-dropdown-items {
   color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  width: 100%;
   text-align: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 10px 15px;
+  width: 100%;
   box-sizing: border-box;
-}
-.nav-admin-links-drop:hover {
-  border-radius: 4px;
+
 }
 
+.nav-profile-dropdown-items:hover {
+  background-color: #444;
+}
+
+.nav-admin-links-drop {
+  padding: 0px 10px;
+}
 
 @media screen and (max-width: 960px) {
   .NavbarItems {
     position: relative;
   }
 
-
   .nav-admin-menu {
-   
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -278,7 +184,6 @@
     transition: all 0.5s ease;
   }
 
-
   .nav-admin-menu.active {
     background: #242222;
     left: 0;
@@ -287,7 +192,6 @@
     z-index: 1;
   }
 
-
   .nav-admin-links {
     text-align: center;
     padding: 2rem;
@@ -295,41 +199,29 @@
     display: table;
   }
 
-
   .nav-admin-links:hover {
     background-color: #fff;
     color: #242424;
     border-radius: 0;
   }
 
-
   .fa-times {
     color: #fff;
     font-size: 2rem;
   }
 
-
-  .nav-admin-links-mobile {
-    display: block;
-    text-align: center;
-    margin: 2rem auto;
-    border-radius: 4px;
-    width: 80%;
-    text-decoration: none;
-    font-size: 1.5rem;
+  .nav-links-mobile {
     background-color: transparent;
     color: #fff;
-    padding: 14px 20px;
-    border: 1px solid #fff;
+    padding: 8px 20px;
+    font-size: 1.2rem;
+    border: 1px solid var(--primary);
     transition: all 0.3s ease-out;
   }
 
-
-  .nav-admin-links-mobile:hover {
+  .nav-links-mobile:hover {
     background: #fff;
     color: #242424;
     transition: 250ms;
   }
 }
-
-

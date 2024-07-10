@@ -24,6 +24,12 @@
     transition: all 0.3s ease-out;
 }
 
+.btn--outline:hover {
+    background: #fff;
+    color: #242424;
+    transition: 250ms;
+}
+
 .btn-medium{
     padding: 8px 20px;
     font-size: 20px;
