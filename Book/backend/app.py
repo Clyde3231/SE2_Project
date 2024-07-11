@@ -8,6 +8,11 @@ from nltk.corpus import stopwords
 import string
 import difflib
 from flask_cors import CORS
+import spacy.cli
+import random
+
+app = Flask(__name__)
+CORS(app)  # Initialize CORS after creating the Flask app
 
 # Ensure necessary NLTK data files are downloaded
 nltk.download('stopwords')
@@ -16,8 +21,6 @@ nltk.download('stopwords')
 spacy.cli.download("en_core_web_sm")
 nlp = spacy.load("en_core_web_sm")
 
-app = Flask(__name__)
-CORS(app)
 def search(query, search_type='title'):
     if search_type == 'author':
         url = f'https://openlibrary.org/search/authors.json?q={query}'
@@ -71,6 +74,21 @@ def parse_book_search_results(json_data):
         for doc in json_data.get('docs', [])
     ]
 
+def fetch_books(query="subject:fiction", limit=100):
+    url = f'https://openlibrary.org/search.json?q={query}&limit={limit}'
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.json().get('docs', [])
+    except requests.exceptions.RequestException as e:
+        print(f"Error occurred: {e}")
+        return []
+
+def simulate_ratings(books):
+    for book in books:
+        book['rating'] = round(3 + 2 * random.random(), 1)  # Simulate ratings between 3 and 5
+    return books
+
 @app.route('/search', methods=['GET'])
 def search_endpoint():
     query = request.args.get('query')
@@ -87,7 +105,7 @@ def search_endpoint():
     else:
         return jsonify({"error": "No results found"}), 404
 
-@app.route('/book/<key>', methods=['GET'])
+@app.route('/<key>', methods=['GET'])
 def get_book_details(key):
     url = f'https://openlibrary.org{key}.json'
     try:
@@ -106,6 +124,13 @@ def get_book_details(key):
         return jsonify(book_details)
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route('/highest_rated', methods=['GET'])
+def get_highest_rated_books():
+    books = fetch_books()
+    books_with_ratings = simulate_ratings(books)
+    highest_rated_books = sorted(books_with_ratings, key=lambda x: x['rating'], reverse=True)[:10]
+    return jsonify(highest_rated_books)
 
 if __name__ == '__main__':
     app.run(debug=True)

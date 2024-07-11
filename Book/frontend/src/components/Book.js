@@ -54,7 +54,7 @@ function Book() {
   
     //   setDefault();
     // }, [query, type]);
-
+    /* IUNCOMMENT TO PARA MAY DISPLAY AGAD NA BOOKS*/
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchQuery.trim()) {
@@ -108,18 +108,22 @@ function Book() {
                 </div>
             </div>
 
-            {/* delete this to remove placeholder*/}
+            
             <div className="Book-Section">
                 <div className="book-item-container">
                     {results.map((result, index) => (
                         <div className="book-item" key={index}>
                             <BookItem
+                                key={index}
                                 src={`http://covers.openlibrary.org/b/id/${result.cover_id}-M.jpg`}
                                 text={result.title}
+                                path={`/book${result.key}`}
                             />
                         </div>
                     ))}
-                    {results.length === 0 && (
+
+                    
+                {/* delete this to remove placeholder*/}
                         <div className="book-item">
                             <div className="book-image">
                                 <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
@@ -137,10 +141,11 @@ function Book() {
                                 </div>
                             </div>
                         </div>
-                    )}
+                {/* delete this to remove placeholder*/}
                 </div>
+                
             </div>
-            {/* delete this to remove placeholder*/}
+
         </div>
     );
 }
