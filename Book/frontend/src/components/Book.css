@@ -234,3 +234,13 @@
     pointer-events: none;
     box-shadow: none;
 }
+
+.book-item-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
+  }
+  
+  .book-item-link:hover {
+    text-decoration: none; /* Ensure underline is not added on hover */
+    color: #76663f;
+  }

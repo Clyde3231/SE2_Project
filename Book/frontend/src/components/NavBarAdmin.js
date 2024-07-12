@@ -42,7 +42,7 @@ function Navbar() {
     <>
       <nav className="navbar">
         <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+          <Link to="/HomeAdmin" className="navbar-logo" onClick={closeMobileMenu}>
             <img src="/images/bookLogo.png" alt="Logo" />
           </Link>
           <ul className={click ? "nav-admin-menu active" : "nav-admin-menu"}>

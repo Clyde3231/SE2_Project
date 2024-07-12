@@ -1,14 +1,15 @@
+// Book.js
 import React, { useState, useEffect } from "react";
 import "./Book.css";
 import axios from "axios";
 import BookItem from "./BookItem";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 axios.defaults.baseURL = 'http://localhost:5000';  // Replace with your Flask server URL
 
 function Book() {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState("Select");
+    const [selectedItem, setSelectedItem] = useState("Title");
     const [results, setResults] = useState([]);
     const [searchQuery, setQuery] = useState('');
     const [searchType, setSearchType] = useState('title');
@@ -21,7 +22,7 @@ function Book() {
 
     const fetchResults = async (query, type) => {
         try {
-            const response = await axios.get('/search', { params: { query, type } });
+            const response = await axios.get('/api/search', { params: { q: query, type } });
             setResults(response.data || []);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -40,21 +41,6 @@ function Book() {
         }
     }, [search]);
 
-
-      /* IUNCOMMENT TO PARA MAY DISPLAY AGAD NA BOOKS */
-    // useEffect(() => {
-    //   const setDefault = async () => {
-    //     try {
-    //       const response = await axios.get('/search', { params: { query, type } });
-    //       setResults(response.data || []);
-    //     } catch (error) {
-    //       console.error('Error fetching data:', error);
-    //     }
-    //   };    
-  
-    //   setDefault();
-    // }, [query, type]);
-    /* IUNCOMMENT TO PARA MAY DISPLAY AGAD NA BOOKS*/
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchQuery.trim()) {
@@ -71,6 +57,16 @@ function Book() {
         setSelectedItem(item);
         setSearchType(item.toLowerCase());
         setIsOpen(false);
+        
+        if (searchQuery.trim()) {
+            navigate(`/FindBook?query=${encodeURIComponent(searchQuery)}&type=${item.toLowerCase()}`);
+            fetchResults(searchQuery, item.toLowerCase());
+        }
+    };
+
+    const handleItemClickNavigate = (path) => {
+        setIsOpen(false);
+        navigate(path);
     };
 
     return (
@@ -108,44 +104,30 @@ function Book() {
                 </div>
             </div>
 
-            
             <div className="Book-Section">
                 <div className="book-item-container">
-                    {results.map((result, index) => (
-                        <div className="book-item" key={index}>
-                            <BookItem
-                                key={index}
-                                src={`http://covers.openlibrary.org/b/id/${result.cover_id}-M.jpg`}
-                                text={result.title}
-                                path={`/book${result.key}`}
-                            />
-                        </div>
-                    ))}
-
-                    
-                {/* delete this to remove placeholder*/}
-                        <div className="book-item">
-                            <div className="book-image">
-                                <img src="/images/placeholderbook.png" alt="Featured Book 1" className="featured_img"/>
-                            </div>
-                            <div className="book-content">
-                                <div className="book-title">
-                                    <h6>Book Title</h6>
-                                </div>
-                                <div className="book-description">
-                                    <p>Lorem Ipsum</p>
-                                </div>
-                                <div className="book-rating">
-                                    <img src="images/star.png" alt="search-icon" />
-                                    <p>4.5</p>
+                    {searchType === 'author' ? (
+                        results.map((result, index) => (
+                            <div className="author-item" key={index}>
+                               <div className="author-name">
+                                    <Link to={`https://openlibrary.org/authors/${result.key}`} target="_blank" rel="noopener noreferrer">{result.name}</Link>
                                 </div>
                             </div>
-                        </div>
-                {/* delete this to remove placeholder*/}
+                        ))
+                    ) : (
+                        results.map((result, index) => (
+                            <div className="book-item" key={index}>
+                                <BookItem
+                                    key={index}
+                                    src={`http://covers.openlibrary.org/b/id/${result.cover_id}-M.jpg`}
+                                    text={result.title}
+                                    path={`/book/works/${result.key.replace('/works/', '')}`}
+                                />
+                            </div>
+                        ))
+                    )}
                 </div>
-                
             </div>
-
         </div>
     );
 }

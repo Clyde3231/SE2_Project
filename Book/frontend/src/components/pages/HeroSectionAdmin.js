@@ -3,9 +3,12 @@ import "../../App.css";
 import { Button } from "../Button";
 import "./HeroSectionAdmin.css";
 
+
 function HeroSectionAdmin() {
   return (
     <div className="hero-admin-container">
+
+
 
 
       {/* Heading and paragraph */}
@@ -13,16 +16,19 @@ function HeroSectionAdmin() {
         <h1>Discover Your Next <br></br> Great Read</h1>
         <p>Thousands of books at your fingertips. Explore our collection now.</p>
         <div className="hero-admin-btns">
-          <Button to="/signin" buttonStyle="btn--primary">
+          <Button to="/findbook" buttonStyle="btn--primary">
             Find a Book  
           </Button>
       </div>
       </div>
 
+
       {/* Button */}
+
 
     </div>
   );
 }
+
 
 export default HeroSectionAdmin;

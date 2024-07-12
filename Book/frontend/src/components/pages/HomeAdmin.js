@@ -12,7 +12,7 @@ function Home() {
     <>
     <Navbar/>
       <HeroSectionAdmin />
-      <Cards />
+      {/* <Cards /> */}
       <Footer />
     </>
   );

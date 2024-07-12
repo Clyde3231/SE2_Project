@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom'; // Import Link and useNavigate
 import axios from 'axios';
-
+import Navbar from '../NavBarAdmin';
 function AuthorWorks() {
   const { key } = useParams();
   const navigate = useNavigate();
@@ -26,7 +26,9 @@ function AuthorWorks() {
 
   return (
     <div>
-      <h2>Author Works</h2>
+    <Navbar />
+    <div className='author-works-container'>
+      <h2 className='author-works-title'>Author Works</h2>
       <ul>
         {works.map((work, index) => (
           <li key={index} onClick={() => navigateToBookDetails(work.key)}>
@@ -34,6 +36,7 @@ function AuthorWorks() {
           </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 }

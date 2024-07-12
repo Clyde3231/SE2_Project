@@ -1,5 +1,6 @@
-from flask import Flask, request, jsonify
 import requests
+from flask import Flask, jsonify, request
+from flask_cors import CORS
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import nltk
@@ -7,18 +8,19 @@ import spacy
 from nltk.corpus import stopwords
 import string
 import difflib
-from flask_cors import CORS
-import spacy.cli
-import random
 
 app = Flask(__name__)
-CORS(app)  # Initialize CORS after creating the Flask app
+CORS(app)
 
-# Ensure necessary NLTK data files are downloaded
-nltk.download('stopwords')
+# Download necessary NLTK data files
 
-# Ensure spaCy model is downloaded
-spacy.cli.download("en_core_web_sm")
+# Download spaCy model if not already downloaded
+try:
+    spacy.load("en_core_web_sm")
+except OSError:
+   
+    spacy.load("en_core_web_sm")
+
 nlp = spacy.load("en_core_web_sm")
 
 def search(query, search_type='title'):
@@ -69,68 +71,156 @@ def parse_book_search_results(json_data):
             'author': ', '.join(doc.get('author_name', ['N/A'])),
             'first_publish_year': doc.get('first_publish_year', 'N/A'),
             'key': doc.get('key', ''),
-            'cover_id': doc.get('cover_i', None)
+            'cover_id': doc.get('cover_i', None)  # Added cover_id
         }
         for doc in json_data.get('docs', [])
     ]
 
-def fetch_books(query="subject:fiction", limit=100):
-    url = f'https://openlibrary.org/search.json?q={query}&limit={limit}'
+def get_book_details(key):
+    url = f'https://openlibrary.org/works/{key}.json'
     try:
         response = requests.get(url)
         response.raise_for_status()
-        return response.json().get('docs', [])
+        book_data = response.json()
+
+        # Extract genres from subjects
+        genres = book_data.get('subjects', [])
+
+        # Process genres with NLP to get top 3
+        top_genres = extract_top_genres(genres)
+         # Add cover image URL
+        cover_id = book_data.get('covers', [None])[0]
+        if cover_id:
+            book_data['cover_image'] = f'http://covers.openlibrary.org/b/id/{cover_id}-L.jpg'
+
+        # Add top genres to book data
+        book_data['genres'] = top_genres
+
+        return book_data
     except requests.exceptions.RequestException as e:
         print(f"Error occurred: {e}")
+        return None
+
+def extract_top_genres(genres):
+    # Process the genres to remove duplicates and clean the data
+    processed_genres = [preprocess_text(genre) for genre in genres]
+    
+    # Use spaCy to get the most relevant genres
+    doc = nlp(' '.join(processed_genres))
+    genre_freq = {}
+    
+    for token in doc:
+        if token.pos_ in ['NOUN', 'PROPN']:
+            genre_freq[token.text] = genre_freq.get(token.text, 0) + 1
+    
+    # Sort genres by frequency and get the top 3
+    sorted_genres = sorted(genre_freq.items(), key=lambda x: x[1], reverse=True)
+    top_genres = [genre for genre, _ in sorted_genres[:3]]
+
+    return top_genres
+
+
+
+def preprocess_text(text):
+    stop_words = set(stopwords.words('english'))
+    text = text.lower().translate(str.maketrans('', '', string.punctuation))
+    return ' '.join(word for word in text.split() if word not in stop_words)
+
+def recommend_books(base_book, books):
+    descriptions = []
+    book_keys = []
+
+    for book in books:
+        book_key = book['key'].replace('/works/', '')
+        details = get_book_details(book_key)
+        if details:
+            description = details.get('description', '')
+            if isinstance(description, dict):
+                description = description.get('value', '')
+            descriptions.append(preprocess_text(description))
+            book_keys.append(book['key'])
+
+    if not descriptions:
+        print("No descriptions available for recommendations.")
         return []
 
-def simulate_ratings(books):
-    for book in books:
-        book['rating'] = round(3 + 2 * random.random(), 1)  # Simulate ratings between 3 and 5
-    return books
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(descriptions)
 
-@app.route('/search', methods=['GET'])
-def search_endpoint():
-    query = request.args.get('query')
-    search_type = request.args.get('type', 'title')
-    search_result = search(query, search_type)
-    
-    if search_result:
-        if search_type == 'author':
-            authors = parse_author_search_results(search_result)
-            return jsonify(authors)
-        else:
-            books = parse_book_search_results(search_result)
-            return jsonify(books)
-    else:
-        return jsonify({"error": "No results found"}), 404
+    base_book_index = book_keys.index(base_book['key'])
+    cosine_similarities = linear_kernel(tfidf_matrix[base_book_index:base_book_index + 1], tfidf_matrix).flatten()
 
-@app.route('/<key>', methods=['GET'])
-def get_book_details(key):
-    url = f'https://openlibrary.org{key}.json'
+    related_docs_indices = cosine_similarities.argsort()[:-6:-1]
+    return [books[i] for i in related_docs_indices if i != base_book_index]
+
+
+def get_author_works(author_key):
+    url = f'https://openlibrary.org/authors/{author_key}/works.json'
     try:
         response = requests.get(url)
         response.raise_for_status()
-        book_details = response.json()
-        
-        # Add cover image URL
-        cover_id = book_details.get('covers', [None])[0]
-        if cover_id:
-            book_details['cover_image'] = f'http://covers.openlibrary.org/b/id/{cover_id}-L.jpg'
-        
-        # Add static ratings
-        book_details['ratings'] = 4.5
-        
-        return jsonify(book_details)
+        return response.json()
     except requests.exceptions.RequestException as e:
-        return jsonify({"error": str(e)}), 500
+        print(f"Error occurred: {e}")
+        return None
+    
+def get_author_details(author_key):
+    url = f'https://openlibrary.org/authors/{author_key}.json'
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error occurred: {e}")
+        return None
 
-@app.route('/highest_rated', methods=['GET'])
-def get_highest_rated_books():
-    books = fetch_books()
-    books_with_ratings = simulate_ratings(books)
-    highest_rated_books = sorted(books_with_ratings, key=lambda x: x['rating'], reverse=True)[:10]
-    return jsonify(highest_rated_books)
+@app.route('/api/authors/<author_key>', methods=['GET'])
+def api_author_details(author_key):
+    author_details = get_author_details(author_key)
+    if author_details:
+        return jsonify(author_details)
+    else:
+        return jsonify({'error': 'Author details not found'}), 404
 
-if __name__ == '__main__':
+@app.route('/api/author/<author_key>/works', methods=['GET'])
+def api_author_works(author_key):
+    works_data = get_author_works(author_key)
+    if works_data and 'entries' in works_data:
+        works = [{'title': work.get('title', 'N/A'), 'key': work.get('key', '')} for work in works_data['entries']]
+        return jsonify(works)
+    else:
+        return jsonify({'error': 'Works not found'}), 404
+
+@app.route('/api/search', methods=['GET'])
+def api_search():
+    query = request.args.get('q', '')
+    search_type = request.args.get('type', 'title')
+    results = search(query, search_type)
+    if search_type == 'author':
+        parsed_results = parse_author_search_results(results)
+    else:
+        parsed_results = parse_book_search_results(results)
+    return jsonify(parsed_results)
+
+@app.route('/api/book/works/<key>', methods=['GET'])
+def api_book_details_with_recommendations(key):
+    details = get_book_details(key)
+    if not details:
+        return jsonify({'error': 'Book details not found'}), 404
+
+    # Fetch search results to use for recommendations
+    search_results = search(details['title'])
+    books = parse_book_search_results(search_results)
+
+    # Generate recommendations
+    recommendations = recommend_books(details, books)
+
+    # Add recommendations to the details response
+    details['recommendations'] = recommendations
+
+    return jsonify(details)
+
+
+
+if __name__ == "__main__":
     app.run(debug=True)

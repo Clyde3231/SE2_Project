@@ -67,9 +67,9 @@ function Register() {
   };
 
   return (
-    <div className="container">
+    <div className="container-register">
       <div id="left-side">
-        <img src="/images/left.png" alt="splash" className="side-image" />
+        <img src="/images/left.png" alt="splash" className="side-image-register" />
       </div>
 
       <div id="right-side">

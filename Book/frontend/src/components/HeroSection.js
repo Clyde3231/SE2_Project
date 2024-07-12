@@ -2,6 +2,7 @@ import React from "react";
 import "./HeroSection.css";
 import { Button } from "./Button";
 
+
 function HeroSection() {
   return (
     <div className="hero-section">
@@ -10,12 +11,13 @@ function HeroSection() {
         <p>Thousands of books at your fingertips. Explore our collection now!</p>
         <div className="hero-btn-container">
           <Button to="/signin" buttonStyle="btn--primary">
-            Find a Book  
+            Enter Now  
           </Button>
         </div>
       </div>
     </div>
   );
 }
+
 
 export default HeroSection;

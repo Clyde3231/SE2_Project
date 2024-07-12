@@ -1,83 +1,106 @@
 .book-details-container {
-    background-color: #D5C9AA;
-    display: flex;
-    align-items: flex-start;
-    padding: 20px;
-    min-height: 100vh;
-  }
-  
-  .book-details-left {
-    flex: 1;
-    margin-right: 0px; /* Add margin for spacing */
-  }
-  
-  .book-details-img {
-    width: 100%; 
-    max-width: 350px; /* Adjust maximum width as needed */
-    height: auto; 
-    display: block;
-    margin: 0 auto;
-  }
-  
-  .book-details-right {
-    flex: 2;
-    margin-right: 100px;
-    text-align: left;
-    position: relative;
-  }
+  background-color: #D5C9AA;
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 100vh;
+}
 
-  
-  .book-details-right h2 {
-    font-size: 50px; 
-    margin-top: 20px;
-    margin-bottom: 50px;
-    font-weight: 800;
-    font-family: 'Times New Roman', Times, serif;
-  }
-  
-  .book-details-left .back-button {
-    display: inline-block;
-    justify-content: end;
-    padding: 10px 20px;
-    background-color: #9d8854;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    width: 200px;
-  }
-  
-  .book-details-left .back-button:hover {
-    background: #76663f;
-  }
-  
-  .book-details-item {
-    margin-bottom: 10px; /* Add margin between details */
-    font-family: 'Times New Roman', Times, serif;
-  }
-  
-  .book-detail-label {
-    font-weight: bold; /* Make labels bold */
-    font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;
-  }
+.book-details-left {
+  flex: 1;
+  margin-right: 30px; /* Add margin for spacing */
+  margin-top: 140px;
+}
 
-  .book-detail-author{
-    font-size: 20px;
-    font-style: italic;
-    color: black;
-    text-decoration: underline;
-    font-family: 'Times New Roman', Times, serif;
-  }
+.book-details-img {
+  width: 100%; 
+  max-width: 350px; /* Adjust maximum width as needed */
+  height: auto; 
+  display: block;
+  margin: 0 auto;
+}
 
-  .book-detail-author:hover{
-    font-weight: 900;
-    color: #76663f;
-    transition: ease;
-  }
+.book-details-right {
+  flex: 2;
+  margin-right: 100px;
+  text-align: left;
+  position: relative;
+}
 
-  .book-detail-desc{
-    font-size: 20px;
-    font-style: italic;
-    font-family: 'Times New Roman', Times, serif;
-  }
+
+.book-details-right h2 {
+  font-size: 50px; 
+  margin-top: 20px;
+  margin-bottom: 50px;
+  font-weight: 800;
+  font-family: 'EB Garamond', Times, serif;
+}
+
+.back-button .book-details-left {
+  display: inline-block;
+  justify-content: end;
+  padding: 10px 20px;
+  background-color: #9d8854;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 200px;
+}
+
+.backBtn .back-button{
+  background-color: #9d8854;
+  text-decoration: none;
+  color: #fff ;
+  padding: 15px 60px;
+  border-radius: 25px;
+}
+
+.backBtn .back-button:hover{
+  background-color: rgb(163, 163, 163);
+}
+
+.backBtn .back-button{
+  margin-top: 25px;
+  margin-left: 20px;
+}
+
+
+.book-details-left .back-button:hover {
+  background: #76663f;
+}
+
+.book-details-item {
+  margin-bottom: 10px; /* Add margin between details */
+  font-family: 'EB Garamond', Times, serif;
+}
+
+.book-detail-label {
+  font-weight: bold; /* Make labels bold */
+  font-size: 20px;
+  font-family: 'EB Garamond', Times, serif;
+}
+
+.book-detail-author{
+  font-size: 20px;
+  font-style: italic;
+  color: black;
+  text-decoration: underline;
+  font-family: 'EB Garamond', Times, serif;
+}
+
+.book-detail-author:hover{
+  font-weight: 900;
+  color: #76663f;
+  transition: ease;
+}
+
+.book-detail-desc{
+  font-size: 20px;
+  font-style: italic;
+  font-family: 'EB Garamond', Times, serif;
+}
+
+.book-details-recommendations{
+  margin-top: 50px;
+}

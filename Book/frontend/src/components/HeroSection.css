@@ -6,29 +6,41 @@
   background: url('../../public/images/bookBackground.jpeg') center center/cover no-repeat; /*copy background image path*/
 }
 
+
 .hero-content {
   text-align: center;
   color: white;
 }
 
+
 .hero-content h1 {
+  color: black;
   font-size: 110px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'EB Garamond', Times, serif;
   margin-bottom: 1rem;
 }
 
+
 .hero-content p {
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 30px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'EB Garamond', Times, serif;
   margin-bottom: 2rem;
 }
 
+
 .hero-btn-container {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'EB Garamond', Times, serif;
   margin-top: 32px;
 }
 
+
 .fa-play-circle {
   margin-left: 4px;
+}
+
+
+.btn--primary{
+  color: rgb(0, 0, 0);
+  background-color: white;
 }

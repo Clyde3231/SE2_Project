@@ -14,7 +14,7 @@ function Cards() {
   useEffect(() => {
     const fetchHighestRatedBooks = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:5000/highest_rated');
+        const response = await axios.get('http://127.0.0.1:5000/api/highest_rated');
         setHighestRatedBooks(response.data);
       } catch (error) {
         console.error('Error fetching highest rated books:', error);

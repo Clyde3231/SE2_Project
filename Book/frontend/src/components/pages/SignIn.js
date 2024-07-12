@@ -54,9 +54,9 @@ function SignIn() {
   };
 
   return (
-    <div className="container">
+    <div className="container-signin">
       <div id="left-side">
-        <img src="/images/left.png" alt="splash" className="side-image" />
+        <img src="/images/left.png" alt="splash" className="side-image-signin" />
       </div>
 
       <div id="right-side">
